@@ -229,15 +229,34 @@ main {
 }
 .strudel-editor {
   flex: 0 1 auto;
-  background: var(--panel);
+  background: #04090f;
   border: 1px solid var(--line);
   border-radius: 12px;
   overflow: hidden;
-  min-height: 220px;
-  max-height: 45vh;
+  min-height: 280px;
+  max-height: 55vh;
   display: flex;
+  box-shadow:
+    inset 0 1px 0 rgba(0, 0, 0, 0.4),
+    inset 0 0 0 1px rgba(0, 191, 255, 0.04);
 }
-.strudel-editor .cm-editor { height: 100%; flex: 1; min-height: 220px; }
+.strudel-editor .cm-editor { height: 100%; flex: 1; min-height: 280px; background: transparent; }
+.strudel-editor .cm-scroller { background: transparent; }
+.strudel-editor .cm-gutters {
+  background: rgba(0, 0, 0, 0.25);
+  border-right: 1px solid rgba(0, 191, 255, 0.08);
+}
+:root[data-theme="light"] .strudel-editor {
+  background: #e6f3fb;
+  border-color: rgba(0, 153, 204, 0.25);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.7),
+    inset 0 0 0 1px rgba(0, 153, 204, 0.06);
+}
+:root[data-theme="light"] .strudel-editor .cm-gutters {
+  background: rgba(0, 153, 204, 0.07);
+  border-right: 1px solid rgba(0, 153, 204, 0.15);
+}
 
 .controls {
   display: flex;
