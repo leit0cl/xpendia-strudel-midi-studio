@@ -30,8 +30,8 @@ export function Oscilloscope({
     } catch {
       // AudioContext not booted yet — keep retrying via RAF until it exists.
     }
-    let buffer: Uint8Array | null = analyser
-      ? new Uint8Array(analyser.fftSize)
+    let buffer: Uint8Array<ArrayBuffer> | null = analyser
+      ? new Uint8Array(new ArrayBuffer(analyser.fftSize))
       : null;
 
     const ro = new ResizeObserver(() => {
@@ -48,7 +48,7 @@ export function Oscilloscope({
       if (!analyser) {
         try {
           analyser = getAnalyser();
-          buffer = new Uint8Array(analyser.fftSize);
+          buffer = new Uint8Array(new ArrayBuffer(analyser.fftSize));
         } catch {
           rafRef.current = requestAnimationFrame(draw);
           return;

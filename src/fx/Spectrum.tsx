@@ -24,8 +24,8 @@ export function Spectrum({ color = '#00BFFF' }: Props) {
     } catch {
       /* not booted yet */
     }
-    let buf: Uint8Array | null = analyser
-      ? new Uint8Array(analyser.frequencyBinCount)
+    let buf: Uint8Array<ArrayBuffer> | null = analyser
+      ? new Uint8Array(new ArrayBuffer(analyser.frequencyBinCount))
       : null;
 
     const ro = new ResizeObserver(() => {
@@ -43,7 +43,7 @@ export function Spectrum({ color = '#00BFFF' }: Props) {
       if (!analyser) {
         try {
           analyser = getAnalyser();
-          buf = new Uint8Array(analyser.frequencyBinCount);
+          buf = new Uint8Array(new ArrayBuffer(analyser.frequencyBinCount));
         } catch {
           rafRef.current = requestAnimationFrame(draw);
           return;

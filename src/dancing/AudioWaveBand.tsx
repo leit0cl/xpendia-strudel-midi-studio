@@ -19,8 +19,8 @@ export function AudioWaveBand() {
     } catch {
       /* not yet booted */
     }
-    let buf: Uint8Array | null = analyser
-      ? new Uint8Array(analyser.fftSize)
+    let buf: Uint8Array<ArrayBuffer> | null = analyser
+      ? new Uint8Array(new ArrayBuffer(analyser.fftSize))
       : null;
 
     const ro = new ResizeObserver(() => {
@@ -35,7 +35,7 @@ export function AudioWaveBand() {
       if (!analyser) {
         try {
           analyser = getAnalyser();
-          buf = new Uint8Array(analyser.fftSize);
+          buf = new Uint8Array(new ArrayBuffer(analyser.fftSize));
         } catch {
           rafRef.current = requestAnimationFrame(draw);
           return;
